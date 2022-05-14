@@ -191,7 +191,13 @@ const Module = (props: ModuleProps) => {
           console.log('One try');
 
           let collidedModules = modulePositions.filter((position) => {
-            return checkCollision(position, { top, left, bottom, right });
+            return checkCollision(position, {
+              top,
+              left,
+              bottom,
+              right,
+              id: 0,
+            });
           });
 
           for (let j = 0; j < collidedModules.length; j++) {
@@ -244,18 +250,18 @@ const Module = (props: ModuleProps) => {
           yMovement = -(initialTop - moduleBottom - GUTTER_SIZE);
         }
 
-        if (
-          // Target left is bigger, target right is bigger
-          (moduleLeft > right || moduleRight > right) &&
-          // Right is touching target left
-          initialRight + xMovement - GUTTER_SIZE > moduleLeft &&
-          // If I am vertically in range
-          checkIfVerticalWithin() &&
-          // If after movement all clear
-          checkProjectedXMovement()
-        ) {
-          xMovement = -(initialLeft - moduleRight - GUTTER_SIZE);
-        }
+        // if (
+        //   // Target left is bigger, target right is bigger
+        //   (moduleLeft > right || moduleRight > right) &&
+        //   // Right is touching target left
+        //   initialRight + xMovement - GUTTER_SIZE > moduleLeft &&
+        //   // If I am vertically in range
+        //   checkIfVerticalWithin() &&
+        //   // If after movement all clear
+        //   checkProjectedXMovement()
+        // ) {
+        //   xMovement = -(initialLeft - moduleRight - GUTTER_SIZE);
+        // }
       }
 
       // Bottom extend feature
